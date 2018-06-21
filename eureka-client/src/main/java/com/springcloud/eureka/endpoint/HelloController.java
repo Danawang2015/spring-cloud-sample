@@ -1,10 +1,10 @@
 package com.springcloud.eureka.endpoint;
 
 import com.sun.istack.internal.logging.Logger;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
+import com.springcloud.bean.*;
 
 /**
  * Created by wangxia on 2018/6/14.
@@ -23,5 +23,16 @@ public class HelloController {
         Thread.sleep(sleepTime);
 
         return "Hello, This is Eureka client with port:";
+    }
+
+    @RequestMapping(value = "/helloSomeone", method = RequestMethod.GET)
+    public User helloSomeone(@RequestHeader String name, @RequestHeader Integer age) {
+        return new User(name, age);
+
+    }
+
+    @RequestMapping(value = "/sayHello", method = RequestMethod.POST)
+    public String sayHello(@RequestBody User user) {
+        return "Hello " + user.getName() + ", " + user.getAge();
     }
 }
