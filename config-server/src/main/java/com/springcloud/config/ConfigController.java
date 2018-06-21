@@ -12,6 +12,6 @@ public class ConfigController {
     @RequestMapping("/config")
     public String config() {
 
-        return "hello, this is a config server."
+        return "hello, this is a config server.";
     }
 }
